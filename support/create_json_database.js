@@ -9,8 +9,6 @@ const session_image =
 const exercise_image =
   "https://explosivewhey.com/cdn/shop/articles/best-workout-routine-for-gym-beginners-135325.png?v=1738755379&width=2048";
 
-const types = [" Exercise", " Block", " Superset"];
-const types_id = ["_e_", "_b_", "_ss_"];
 const set_type = ["rep", "time", "rep_range"];
 
 const getSetList = ({
@@ -84,10 +82,9 @@ const getExercise = ({
     exercise_id: exe_ids_names?.exercise_id,
     exercise_name: exe_ids_names?.exercise_name,
     block_id: exe_ids_names?.exercise_name,
-    image: exercise_image,
+    superset_id: exe_ids_names?.superset_id,
+    exercise_image: exercise_image,
     is_completed: false,
-    is_block: block_idx !== -1,
-    is_superset: block_idx !== -1,
     order_index: order_index,
     category: "Strength",
     equiptment_category: "Strengthening",
@@ -130,6 +127,7 @@ const getSuperset = ({
     superset_name: ss_ids_names?.superset_name,
     order_index: order_index,
     is_completed: false,
+    is_superset: true,
   };
   let exercise_list = [];
   for (let exercise_idx = 0; exercise_idx < 5; exercise_idx++) {
@@ -140,7 +138,7 @@ const getSuperset = ({
         block_idx,
         exercise_idx,
         superset_idx,
-        order_index,
+        order_index: exercise_idx,
       })
     );
   }
@@ -165,6 +163,7 @@ const getBlock = ({
     session_id: bl_ids_names?.session_id,
     block_name: bl_ids_names?.block_name,
     block_id: bl_ids_names?.block_id,
+    is_block: true,
     order_index: order_index,
     is_completed: false,
   };
@@ -315,8 +314,8 @@ const get_program_list = () => {
         program_asign_id: prg_ids_names?.program_asign_id,
         session_id: sess_ids_names?.session_id,
         session_name: sess_ids_names?.session_name,
-        image: session_image,
-        audio: audio_link,
+        session_image: session_image,
+        session_audio: audio_link,
         is_completed: false,
         location: "Home",
         assign_date:

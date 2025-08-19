@@ -11,7 +11,8 @@ export const fetch_exercise_details = async (
     const programList = JSON.parse(data);
 
     const program = programList.find(
-      (p) => p._id === program_id && p.program_asign_id === program_asign_id
+      (p) =>
+        p.program_id === program_id && p.program_asign_id === program_asign_id
     );
 
     if (!program) {
@@ -23,7 +24,7 @@ export const fetch_exercise_details = async (
     }
 
     const session = (program.session_list || []).find(
-      (s) => s._id === session_id
+      (s) => s.session_id === session_id
     );
 
     if (!session) {
@@ -36,13 +37,13 @@ export const fetch_exercise_details = async (
     let exercise = null;
 
     for (const item of session.exercise_list || []) {
-      if (item?._id === exercise_id) {
+      if (item?.exercise_id === exercise_id) {
         exercise = item;
         break;
       }
       if (item?.is_block) {
         const found = (item.exercise_list || []).find(
-          (ex) => ex._id === exercise_id
+          (ex) => ex.exercise_id === exercise_id
         );
         if (found) {
           exercise = found;

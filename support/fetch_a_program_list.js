@@ -10,7 +10,8 @@ export const fetch_program_list = async () => {
         program_id: item?.program_id,
         program_asign_id: item?.program_asign_id,
         program_name: item?.program_name,
-        program_image: item?.image,
+        program_image: item?.program_image,
+        is_completed: item?.is_completed,
         session_list: item?.session_list?.map((session) => ({
           session_id: session?.session_id,
           assign_date: session?.assign_date,
